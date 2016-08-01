@@ -33,6 +33,7 @@ module Beaker
         v_file << "    v.vm.box_version = '#{host['box_version']}'\n" unless host['box_version'].nil?
         v_file << "    v.vm.box_check_update = '#{host['box_check_update'] ||= 'true'}'\n"
         v_file << "    v.vm.synced_folder '.', '/vagrant', disabled: true\n" if host['synced_folder'] == 'disabled'
+        v_file << "    v.vm.synced_folder '.', '/home/vagrant/sync', disabled: true\n" if host['synced_folder'] == 'disabled'
         v_file << "    v.vm.synced_folder #{host['synced_folder_custom']}\n" if host['synced_folder_custom']
         unless host['mount_folders'].nil?
           host['mount_folders'].each do |name, folder|
